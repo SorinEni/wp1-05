@@ -1,22 +1,13 @@
 <?php
-
-$vklad = 25;
+$vklad = 275;
 $studentka = 17;
 $muz = 40;
 $podnikatel = 100;
+$cigarettePrice = 99;
 $spoluobcane = 50;
-$vodkaPrice = 129;
+$vodkaPrice = 133;
 $homelessMoney = $vklad + $studentka + $muz + $podnikatel - $spoluobcane;
-$homelessMoneyAfter = $homelessMoney - $vodkaPrice;
-
-if ($homelessMoney >= $vodkaPrice) {
-    echo "Bezdmovec ma dostatek peněz";
-}
-
-else {
-    echo "Bezdomovec nema dostatek peněz";
-}
-
+$cigaretteVodka = $cigarettePrice + $vodkaPrice;
 ?>
 
 
@@ -28,22 +19,35 @@ else {
     <title>Document</title>
 </head>
 <body>
-<br>
+ <p>Penize před návštěvou večerky: <?=$homelessMoney?> </p>
+
     <?php
 
-    if ($homelessMoney>=$vodkaPrice) {
+    if ($homelessMoney >= $cigaretteVodka) {
+        echo "Cena vodky a cigaret: " .$cigaretteVodka;
+        $homelessMoney = $homelessMoney - $cigaretteVodka;
+        echo "Zakoupeno";
+    }
+
+    elseif ($homelessMoney >= $vodkaPrice) {
         echo "Cena vodky: " . $vodkaPrice; 
-        echo  "<br> Vodka zakoupena!<br>";
-        echo "<br>Peníze bezdomovce před návštěvou večerky: " . $homelessMoney . "<br>";
-        echo "<br>Peníze bezdomovce po návštěvě večerky: " . $homelessMoneyAfter . "<br>";
+        $homelessMoney = $homelessMoney - $vodkaPrice;
+        echo "Vodka byla zakoupena";
+    }
+
+    elseif ($homelessMoney >= $cigarettePrice) {
+        echo "Cena cigaret:" .$cigarettePrice;
+        $homelessMoney = $homelessMoney - $cigarettePrice;
+        echo "Cigarety byly zakoupeny";
     }
 
     else {
-        echo "Nedostatek peněz!";
+        "Bezdomovec nemá dostatek peněz";
     }
-   
 
     ?>
+
+    <p>Peníze po návštěvě večerky: <?=$homelessMoney ?> </p>
 
 </body>
 </html>
